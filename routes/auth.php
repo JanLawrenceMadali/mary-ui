@@ -31,5 +31,13 @@ Route::middleware('auth')->group(function () {
         ->name('password.confirm');
 });
 
-Route::post('logout', App\Livewire\Actions\Logout::class)
-    ->name('logout');
+// Route::post('logout', App\Livewire\Actions\Logout::class)
+//     ->name('logout');
+
+Route::get('/logout', function () {
+    auth()->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+ 
+    return redirect('/');
+});

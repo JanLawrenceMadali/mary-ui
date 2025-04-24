@@ -29,9 +29,10 @@ new class extends Component {
     </div>
 
     <flux:modal.trigger name="confirm-user-deletion">
-        <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
+        {{-- <flux:button variant="danger" x-data="" x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')">
             {{ __('Delete account') }}
-        </flux:button>
+        </flux:button> --}}
+        <x-mary-button label="Delete account" type="submit" class="text-white bg-red-500 hover:bg-red-600 dark:bg-red-500 dark:text-red-500" />
     </flux:modal.trigger>
 
     <flux:modal name="confirm-user-deletion" :show="$errors->isNotEmpty()" focusable class="max-w-lg">
@@ -40,7 +41,8 @@ new class extends Component {
                 <flux:heading size="lg">{{ __('Are you sure you want to delete your account?') }}</flux:heading>
 
                 <flux:subheading>
-                    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+                    {{ __('Once your account is deleted, all of its resources and data will be permanently deleted.
+                    Please enter your password to confirm you would like to permanently delete your account.') }}
                 </flux:subheading>
             </div>
 
