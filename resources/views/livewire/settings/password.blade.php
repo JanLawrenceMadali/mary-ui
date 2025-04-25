@@ -40,33 +40,18 @@ new class extends Component {
 <section class="w-full">
     @include('partials.settings-heading')
 
-    <x-settings.layout :heading="__('Update password')" :subheading="__('Ensure your account is using a long, random password to stay secure')">
+    <x-settings.layout :heading="__('Update password')"
+        :subheading="__('Ensure your account is using a long, random password to stay secure')">
         <form wire:submit="updatePassword" class="mt-6 space-y-6">
-            <flux:input
-                wire:model="current_password"
-                :label="__('Current password')"
-                type="password"
-                required
-                autocomplete="current-password"
-            />
-            <flux:input
-                wire:model="password"
-                :label="__('New password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
-            <flux:input
-                wire:model="password_confirmation"
-                :label="__('Confirm Password')"
-                type="password"
-                required
-                autocomplete="new-password"
-            />
+            <x-mary-password wire:model="current_password" label="Current password" required right class="rounded-lg" />
+            <x-mary-password wire:model="password" label="New password" required right class="rounded-lg" />
+            <x-mary-password wire:model="password_confirmation" label="Confirm password" required right
+                class="rounded-lg" />
 
             <div class="flex items-center gap-4">
                 <div class="flex items-center justify-end">
-                    <flux:button variant="primary" type="submit" class="w-full">{{ __('Save') }}</flux:button>
+                    <x-mary-button type="submit" label="Save" spinner="updatePassword"
+                        class="w-full text-white rounded-lg bg-zinc-800 hover:bg-zinc-700 dark:text-zinc-800 dark:bg-zinc-50 dark:hover:bg-zinc-200" />
                 </div>
 
                 <x-action-message class="me-3" on="password-updated">

@@ -82,14 +82,13 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
-        <flux:input wire:model="email" :label="__('Email address')" type="email" required autofocus autocomplete="email"
-            placeholder="email@example.com" />
+        <x-mary-input wire:model="email" label="Email address" type="email" placeholder="email@example.com"
+            class="rounded-lg" required autofocus />
 
         <!-- Password -->
         <div class="relative">
-            <flux:input wire:model="password" :label="__('Password')" type="password" required
-                autocomplete="current-password" :placeholder="__('Password')" />
-
+            <x-mary-password wire:model="password" label="Password" placehoder="Password" class="rounded-lg" required
+                right />
             @if (Route::has('password.request'))
             <flux:link class="absolute end-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
                 {{ __('Forgot your password?') }}
@@ -101,7 +100,7 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <flux:checkbox wire:model="remember" :label="__('Remember me')" />
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+            <x-mary-button label="Log in" type="submit" type="submit" class="w-full rounded-lg bg-zinc-800 text-zinc-50 hover:bg-zinc-700" spinner="login" />
         </div>
     </form>
 
