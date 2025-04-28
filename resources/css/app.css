@@ -73,7 +73,7 @@ select:focus[data-flux-control] {
 
 /** daisyUI */
 @plugin "daisyui" {
-    themes: light --default, dark --prefersdark;
+    themes: all;
 }
 
 /* maryUI */
