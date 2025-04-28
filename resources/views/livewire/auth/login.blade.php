@@ -74,8 +74,8 @@ new #[Layout('components.layouts.auth')] class extends Component {
 }; ?>
 
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')"
-        :description="__('Enter your email and password below to log in')" />
+    <x-mary-theme-toggle class="hidden" />
+    <x-mary-header title="Log in to your account" subtitle="Enter your email and password below to log in" class="!mb-0" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -97,10 +97,10 @@ new #[Layout('components.layouts.auth')] class extends Component {
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        {{-- <flux:checkbox wire:model="remember" :label="__('Remember me')" /> --}}
 
         <div class="flex items-center justify-end">
-            <x-mary-button label="Log in" type="submit" type="submit" class="w-full rounded-lg bg-zinc-800 text-zinc-50 hover:bg-zinc-700" spinner="login" />
+            <x-mary-button label="Log in" type="submit" class="w-full rounded-lg" spinner="login" />
         </div>
     </form>
 
