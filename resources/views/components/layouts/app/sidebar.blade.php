@@ -10,7 +10,9 @@
     {{-- NAVBAR mobile only --}}
     <x-mary-nav sticky class="lg:hidden !bg-[#1B4298] text-white">
         <x-slot:brand>
-            <img src="{{ asset('assets/images/bmi-banner.jpg') }}" class="h-10" alt="bmi-banner">
+            <a href="{{ route('dashboard') }}" wire:navigate>
+                <img src="{{ asset('assets/images/bmi-banner.jpg') }}" class="h-10" alt="bmi-banner">
+            </a>
         </x-slot:brand>
         <x-slot:actions>
             <label for="main-drawer" class="mr-3 lg:hidden">
@@ -45,7 +47,7 @@
                     <x-mary-menu-item title="Account" icon="lucide.user-circle-2" link="{{ route('settings.profile') }}"
                         route="settings.*" />
                     <x-mary-menu-item title="Theme" icon="o-swatch" @click="$dispatch('mary-toggle-theme')" />
-                    <x-mary-theme-toggle class="hidden" />
+                    <x-mary-theme-toggle darkTheme="business" class="hidden" />
                     <x-mary-menu-item title="Logout" icon="lucide.log-out" link="/logout" />
                 </x-mary-menu-sub>
 
