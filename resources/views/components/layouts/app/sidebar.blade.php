@@ -35,25 +35,47 @@
             </a>
 
             {{-- MENU --}}
-            <x-mary-menu activeBgColor="bg-[#F26531]" activate-by-route>
+            <x-mary-menu activeBgColor="bg-[#F26531]" title="" activate-by-route>
+
+                {{-- User --}}
+                @if($user = auth()->user())
+                <x-mary-menu-separator />
+
+                <x-mary-list-item :item="$user" no-separator no-hover class="-mx-2 !-my-2 rounded">
+                    <x-slot:avatar>
+                        <a href="{{ route('settings.profile') }}" wire:navigate>
+                            <x-mary-avatar :placeholder="$user->initials()" class="!w-10" />
+                        </a>
+                    </x-slot:avatar>
+                    <x-slot:value>
+                        <a href="{{ route('settings.profile') }}" wire:navigate>
+                            {{ $user->name }}
+                        </a>
+                    </x-slot:value>
+                    <x-slot:sub-value>
+                        <span title="{{ $user->email }}" class="text-zinc-200 select-all">{{ $user->email }}</span>
+                    </x-slot:sub-value>
+                    <x-slot:actions>
+                        <x-mary-button class="btn-square btn-ghost btn-xs" tooltip-left="Dark mode">
+                            <x-mary-theme-toggle darkTheme="business" />
+                        </x-mary-button>
+                    </x-slot:actions>
+                </x-mary-list-item>
+
+                <x-mary-menu-separator />
+                @endif
+
                 <x-mary-menu-item title="Home" icon="lucide.home" link="{{ route('dashboard') }}" route="dashboard"
                     class="hover:bg-[#F26531]" />
                 <x-mary-menu-item title="User Management" icon="lucide.users-2" link="{{ route('um.index') }}"
                     route="um.index" class="hover:bg-[#F26531]" />
                 <x-mary-menu-item title="Role Management" icon="lucide.user-cog-2" link="{{ route('rm.index') }}"
                     route="rm.index" class="hover:bg-[#F26531]" />
-
-                <x-mary-menu-sub title="Settings" icon="lucide.cog">
-                    <x-mary-menu-item title="Account" icon="lucide.user-circle-2" link="{{ route('settings.profile') }}"
-                        route="settings.*" />
-                    <x-mary-menu-item title="Theme" icon="o-swatch" @click="$dispatch('mary-toggle-theme')" />
-                    <x-mary-theme-toggle darkTheme="business" class="hidden" />
-                    <x-mary-menu-item title="Logout" icon="lucide.log-out" link="/logout" />
-                </x-mary-menu-sub>
-
+                <x-mary-menu-separator />
+                <x-mary-menu-item title="Log out" icon="lucide.log-out" link="/logout" class="hover:bg-[#F26531]" />
             </x-mary-menu>
         </x-slot:sidebar>
-        {{-- The `$slot` goes here --}}
+
         <x-slot:content>
             {{ $slot }}
         </x-slot:content>
