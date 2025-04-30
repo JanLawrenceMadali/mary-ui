@@ -5,10 +5,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 use Livewire\Volt\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
+
     public string $name = '';
     public string $email = '';
+    public $avatar;
 
     /**
      * Mount the component.
@@ -99,8 +103,11 @@ new class extends Component {
                 @endif
             </div>
 
+            <x-mary-file label="Avatar" wire:model="avatar" accept="image/png, image/jpg" />
+
             <div class="flex items-center gap-4">
-                <x-mary-button label="Save" type="submit" class="text-white bg-zinc-600 dark:bg-zinc-200 dark:text-zinc-600"
+                <x-mary-button label="Save" type="submit"
+                    class="text-white bg-zinc-600 dark:bg-zinc-200 dark:text-zinc-600"
                     spinner="updateProfileInformation" />
                 <x-action-message class="me-3" on="profile-updated">Saved</x-action-message>
             </div>
