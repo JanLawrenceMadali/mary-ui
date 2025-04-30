@@ -94,3 +94,21 @@ select:focus[data-flux-control] {
 .mary-table-pagination button {
     @apply cursor-pointer;
 }
+
+#map {
+    height: 95vh;
+    width: 100%;
+}
+
+/* Google-like location button */
+.leaflet-control-locate {
+    font-size: 1.5em;
+    background: white;
+    width: 34px;
+    height: 34px;
+    line-height: 34px;
+    text-align: center;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.4);
+    border-radius: 4px;
+    cursor: pointer;
+}
